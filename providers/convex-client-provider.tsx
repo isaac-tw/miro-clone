@@ -8,6 +8,7 @@ import {
     UserButton
 } from "@clerk/clerk-react";
 import { ConvexProviderWithClerk } from "convex/react-clerk";
+import Loading from "@/components/auth/loading";
 
 interface ConvexClientProviderProps {
     children: React.ReactNode;
@@ -22,7 +23,7 @@ export const ConvexClientProvider = ({ children }: ConvexClientProviderProps) =>
         <ClerkProvider publishableKey={publishableKey}>
             <ConvexProviderWithClerk useAuth={useAuth} client={convex}>
                 <AuthLoading>
-                    <h1>Loading...</h1>
+                    <Loading />
                 </AuthLoading>
                 <Unauthenticated>
                     <SignInButton />
