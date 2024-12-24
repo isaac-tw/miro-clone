@@ -5,6 +5,7 @@ import { api } from "@/convex/_generated/api";
 import { useApiMutation } from "@/hooks/use-api-mutation";
 import { useOrganization } from "@clerk/clerk-react";
 import Image from "next/image";
+import { toast } from "sonner";
 
 const EmptyBoards = () => {
   const { mutate, pending } = useApiMutation(api.board.create);
@@ -12,7 +13,13 @@ const EmptyBoards = () => {
 
   const handleCreateBoard = () => {
     if (!organization) return;
-    mutate({ orgId: organization.id, title: "Untitled" });
+    mutate({ orgId: organization.id, title: "Untitled" })
+      .then(() => {
+        toast.success("Board created successfully");
+      })
+      .catch(() => {
+        toast.error("Failed to create board");
+      });
   };
 
   return (
