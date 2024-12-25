@@ -1,11 +1,12 @@
 "use client";
 
 import { formatDistanceToNow } from "date-fns";
+import { Skeleton } from "@/components/ui/skeleton";
 import { useAuth } from "@clerk/clerk-react";
+import Footer from "./footer";
 import Image from "next/image";
 import Link from "next/link";
 import Overlay from "./overlay";
-import Footer from "./footer";
 
 interface BoardCardProps {
   id: string;
@@ -49,6 +50,14 @@ const BoardCard = ({
         />
       </div>
     </Link>
+  );
+};
+
+BoardCard.Skeleton = () => {
+  return (
+    <div className="aspect-[100/127] overflow-hidden rounded-lg">
+      <Skeleton className="h-full w-full" />
+    </div>
   );
 };
 
