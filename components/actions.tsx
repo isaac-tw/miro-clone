@@ -11,6 +11,8 @@ import { Link2Icon, Trash2Icon } from "lucide-react";
 import { toast } from "sonner";
 import { useApiMutation } from "@/hooks/use-api-mutation";
 import { api } from "@/convex/_generated/api";
+import ConfirmModal from "./confirm-modal";
+import { Button } from "./ui/button";
 
 interface ActionProps {
   children: React.ReactNode;
@@ -52,10 +54,20 @@ const Actions = ({ children, side, sideOffset, id, title }: ActionProps) => {
           <Link2Icon className="mr-2 h-4 w-4" />
           Copy board link
         </DropdownMenuItem>
-        <DropdownMenuItem className="cursor-pointer p-3" onClick={handleDelete}>
-          <Trash2Icon className="mr-2 h-4 w-4" />
-          Delete
-        </DropdownMenuItem>
+        <ConfirmModal
+          header="Delete board?"
+          description="This will delete the board and all of its contents."
+          disabled={pending}
+          onConfirm={handleDelete}
+        >
+          <Button
+            variant="ghost"
+            className="w-full cursor-pointer justify-start p-3 text-sm font-normal"
+          >
+            <Trash2Icon className="mr-2 h-4 w-4" />
+            Delete
+          </Button>
+        </ConfirmModal>
       </DropdownMenuContent>
     </DropdownMenu>
   );
