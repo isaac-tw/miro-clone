@@ -7,8 +7,10 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
-import { Link2Icon } from "lucide-react";
+import { Link2Icon, Trash2Icon } from "lucide-react";
 import { toast } from "sonner";
+import { useApiMutation } from "@/hooks/use-api-mutation";
+import { api } from "@/convex/_generated/api";
 
 interface ActionProps {
   children: React.ReactNode;
@@ -19,11 +21,19 @@ interface ActionProps {
 }
 
 const Actions = ({ children, side, sideOffset, id, title }: ActionProps) => {
+  const { mutate, pending } = useApiMutation(api.board.remove);
+
   const handleCopyLink = () => {
     navigator.clipboard
       .writeText(`${window.location.origin}/board/${id}`)
       .then(() => toast.success("Link copied"))
       .catch(() => toast.success("Failed to copy link"));
+  };
+
+  const handleDelete = () => {
+    mutate({ id })
+      .then(() => toast.success("Board deleted"))
+      .catch(() => toast.success("Failed to delete board"));
   };
 
   return (
@@ -41,6 +51,10 @@ const Actions = ({ children, side, sideOffset, id, title }: ActionProps) => {
         >
           <Link2Icon className="mr-2 h-4 w-4" />
           Copy board link
+        </DropdownMenuItem>
+        <DropdownMenuItem className="cursor-pointer p-3" onClick={handleDelete}>
+          <Trash2Icon className="mr-2 h-4 w-4" />
+          Delete
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
