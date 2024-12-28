@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils";
 import { StarIcon } from "lucide-react";
+import React from "react";
 
 interface FooterProps {
   isFavorite: boolean;
@@ -18,6 +19,13 @@ const Footer = ({
   onclick,
   disabled,
 }: FooterProps) => {
+  const handleClick = (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+  ) => {
+    event.stopPropagation();
+    event.preventDefault();
+    onclick();
+  };
   return (
     <div className="relative bg-white p-3">
       <p className="max-w-[calc(100%-20px)] truncate text-[13px]">{title}</p>
@@ -26,7 +34,7 @@ const Footer = ({
       </p>
       <button
         disabled={disabled}
-        onClick={onclick}
+        onClick={handleClick}
         className={cn(
           "absolute right-3 top-3 text-muted-foreground opacity-0 transition hover:text-blue-600 group-hover:opacity-100",
           disabled && "cursor-not-allowed opacity-75",
