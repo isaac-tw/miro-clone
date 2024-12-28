@@ -1,15 +1,15 @@
 import { LoaderIcon } from "lucide-react";
-import Info from "./info";
-import Participants from "./participants";
-import Toolbar from "./toolbar";
+import { InfoSkeleton } from "./info";
+import { ParticipantsSkeleton } from "./participants";
+import { ToolbarSkeleton } from "./toolbar";
 
 const Loading = () => {
   return (
     <main className="relative flex h-full w-full touch-none items-center justify-center bg-neutral-100">
       <LoaderIcon className="h-6 w-6 animate-spin text-muted-foreground" />
-      <Info.Skeleton />
-      <Participants.Skeleton />
-      <Toolbar.Skeleton />
+      <InfoSkeleton />
+      <ParticipantsSkeleton />
+      <ToolbarSkeleton />
     </main>
   );
 };
