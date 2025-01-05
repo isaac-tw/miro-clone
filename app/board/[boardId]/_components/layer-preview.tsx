@@ -4,6 +4,7 @@ import { LayerType } from "@/types/canvas";
 import { useStorage } from "@liveblocks/react";
 import { memo, PointerEvent } from "react";
 import Rectangle from "./rectangle";
+import Ellipse from "./ellipse";
 
 interface LayerPreviewProps {
   id: string;
@@ -23,6 +24,15 @@ const LayerPreview = ({
     case LayerType.Rectangle:
       return (
         <Rectangle
+          id={id}
+          layer={layer}
+          onPointerDown={onLayerPointerDown}
+          selectionColor={selectionColor}
+        />
+      );
+    case LayerType.Ellipse:
+      return (
+        <Ellipse
           id={id}
           layer={layer}
           onPointerDown={onLayerPointerDown}
