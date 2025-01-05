@@ -38,6 +38,7 @@ import {
 import { LiveObject } from "@liveblocks/client";
 import LayerPreview from "./layer-preview";
 import SelectionBox from "./selection-box";
+import SelectionTools from "./selection-tools";
 
 const MAX_LAYERS = 100;
 
@@ -92,7 +93,7 @@ const Canvas = ({ boardId }: CanvasProps) => {
       setMyPresence({ selection: [layerId] }, { addToHistory: true });
       setCanvasState({ mode: CanvasMode.None });
     },
-    [],
+    [lastUsedColor],
   );
 
   const unselectLayers = useMutation(({ self, setMyPresence }) => {
@@ -266,6 +267,7 @@ const Canvas = ({ boardId }: CanvasProps) => {
         undo={history.undo}
         redo={history.redo}
       />
+      <SelectionTools camera={camera} setLastUsedColor={setLastUsedColor} />
       <svg
         className="h-screen w-screen"
         onWheel={onWheel}
