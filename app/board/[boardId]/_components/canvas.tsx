@@ -3,6 +3,7 @@
 import {
   PointerEvent,
   useCallback,
+  useEffect,
   useMemo,
   useState,
   WheelEvent,
@@ -45,6 +46,7 @@ import SelectionBox from "./selection-box";
 import SelectionTools from "./selection-tools";
 import Path from "./path";
 import UseDisableScrollBounce from "@/hooks/use-disable-scroll-bounce";
+import UseDeleteLayers from "@/hooks/use-delete-layers";
 
 const MAX_LAYERS = 100;
 const SELECTIONNET_THRESHOLD = 5;
@@ -71,6 +73,27 @@ const Canvas = ({ boardId }: CanvasProps) => {
     g: 0,
     b: 0,
   });
+
+  const deleteLayers = UseDeleteLayers();
+
+  useEffect(() => {
+    function onKeyDown(e: KeyboardEvent) {
+      switch (e.key) {
+        case "z": {
+          if (e.ctrlKey || e.metaKey) {
+            if (e.shiftKey) history.redo();
+            else history.undo();
+          }
+          break;
+        }
+      }
+    }
+
+    document.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.removeEventListener("keydown", onKeyDown);
+    };
+  }, [deleteLayers, history]);
 
   UseDisableScrollBounce();
 
