@@ -18,7 +18,7 @@ import { api } from "@/convex/_generated/api";
 import { toast } from "sonner";
 
 const RenameModal = () => {
-  const { isOpen, initialValues, onOpen, onClose } = useRenameModal();
+  const { isOpen, initialValues, onClose } = useRenameModal();
   const { mutate, pending } = useApiMutation(api.board.update);
   const [title, setTitle] = useState(initialValues.title);
 

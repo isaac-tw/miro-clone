@@ -3,9 +3,7 @@ import Canvas from "./_components/canvas";
 import Loading from "./_components/loading";
 
 interface BoardIdPageProps {
-  params: {
-    boardId: string;
-  };
+  params: Promise<{ boardId: string }>;
 }
 
 const BoardIdPage = async ({ params }: BoardIdPageProps) => {

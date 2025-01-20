@@ -77,7 +77,7 @@ const BoardCard = ({
   );
 };
 
-BoardCard.Skeleton = () => {
+BoardCard.Skeleton = function BoardCardSkeleton() {
   return (
     <div className="aspect-[100/127] overflow-hidden rounded-lg">
       <Skeleton className="h-full w-full" />
