@@ -44,6 +44,7 @@ import LayerPreview from "./layer-preview";
 import SelectionBox from "./selection-box";
 import SelectionTools from "./selection-tools";
 import Path from "./path";
+import UseDisableScrollBounce from "@/hooks/use-disable-scroll-bounce";
 
 const MAX_LAYERS = 100;
 const SELECTIONNET_THRESHOLD = 5;
@@ -70,6 +71,8 @@ const Canvas = ({ boardId }: CanvasProps) => {
     g: 0,
     b: 0,
   });
+
+  UseDisableScrollBounce();
 
   const insertLayer = useMutation(
     (
