@@ -1,36 +1,70 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Miro Clone
 
-## Getting Started
+## Introduction
 
-First, run the development server:
+Miro Clone is a project that mimics the functionality of Miro, a collaborative online whiteboard platform. This project is built using Next.js, Clerk, Liveblocks, and other modern web technologies.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Collaborative whiteboarding
+- User authentication with Clerk
+- Real-time updates powered by Liveblocks
+- Modern UI with Radix UI and TailwindCSS
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Setup
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. Clone the repository:
 
-## Learn More
+   ```bash
+   git clone https://github.com/your-repo/miro-clone.git
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+2. Install dependencies:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+   ```bash
+   npm install --legacy-peer-deps
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+3. Run the development server:
 
-## Deploy on Vercel
+   ```bash
+   npm run dev
+   ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+4. Configure environment variables:
+   Create a `.env.local` file in the root directory and add the following variables:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+   ```env
+   CONVEX_DEPLOYMENT=<your-convex-deployment>
+   NEXT_PUBLIC_CONVEX_URL=<your-next-public-convex-url>
+   NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=<your-clerk-publishable-key>
+   CLERK_SECRET_KEY=<your-clerk-secret-key>
+   LIVEBLOCKS_SECRET_KEY=<your-liveblocks-secret-key>
+   ```
+
+## Core Dependencies
+
+The following libraries are used in this project:
+
+- **@clerk/clerk-react**: ^5.21.0
+- **@clerk/nextjs**: ^6.9.6
+- **@liveblocks/react**: ^2.15.1
+- **convex**: ^1.17.4
+- **next**: 15.1.2
+- **react**: ^19.0.0
+- **tailwindcss**: ^3.4.1
+- **zustand**: ^5.0.2
+
+## Live Deployment
+
+The project is deployed at: [Miro Clone](https://isaac-miro-clone.vercel.app/)
+
+**Note:** New sign-ups are currently restricted.
+
+## Acknowledgements
+
+This project draws inspiration and guidance from the work of [Antonio Erdeljac](https://github.com/antonioerdeljac). Special thanks for sharing knowledge and resources.
+
+## License
+
+This project is licensed under the MIT License. See the LICENSE file for details.
